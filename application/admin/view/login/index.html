@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>户外媒宝总管理系统</title>
+    <meta name="keywords" content="户外媒宝管理系统" />
+    <meta name="description" content="户外媒宝管理系统" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="Author" content="larry" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="Shortcut Icon" href="/favicon.ico" />
+    <!-- load css -->
+    <link rel="stylesheet" type="text/css" href="/static/common/frame/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/gobal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/animate.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css" media="all">
+</head>
+<body>
+<div class="larry-main layui-layout animated shake larry-delay2" id="larry_login">
+    <div class="title">户外媒宝</div>
+    <p class="info">SaaS管理系统</p>
+    <div class="user-info">
+        <!--<div class="avatar"><img src="/static/images/photo/admin.png" alt=""></div>-->
+        <form class="layui-form" id="larry_form" action="{:url('login/doLogin');}">
+            <div class="layui-form-item" id="mobile">
+                <label class="layui-form-label">手机号:</label>
+                <input type="text" name="mobile" required lay-verify="required|phone" aautocomplete="off" class="layui-input larry-input" placeholder="请输入您的手机号">
+            </div>
+            <div class="layui-form-item" id="password">
+                <label class="layui-form-label">密&nbsp;&nbsp;&nbsp;码:</label>
+                <input type="password" name="password" required lay-verify="required|password" aautocomplete="off" class="layui-input larry-input" placeholder="请输入您的登录密码">
+            </div>
+            <div class="layui-form-item larry-verfiy-code" id="larry_code">
+                <input type="text" name="code" required lay-verify="required" aautocomplete="off" class="layui-input larry-input" placeholder="输入验证码">
+                <div class="code">
+                    <div class="arrow"></div>
+                    <div class="code-img"><img src="{:captcha_src();}" alt="验证码" title="看不清,点击更换验证码" class="layui-disabled" id="codeimage" disabled="disabled" onclick="this.src=this.src+'?'+'id='+Math.random()"></div>
+                    <a id="change" class="change layui-disabled" disabled="disabled" title="看不清,点击更换验证码" onclick="document.getElementById('codeimage').click();"><i></i></a>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button class="layui-btn larry-btn" lay-filter="login" lay-submit>立即登录</button>
+            </div>
+        </form>
+    </div>
+    <div class="user_reg">
+    	<span><a href="">立即注册</a></span><a href="">忘记密码？</a>
+    </div>
+</div>
+<!-- 加载js文件-->
+<script type="text/javascript" src="/static/common/frame/layui/layui.js"></script>
+<script type="text/javascript" src="/static/common/js/gobal.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+</html>
+

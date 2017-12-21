@@ -1,0 +1,33 @@
+body {background: #e6e9f0;}
+a {color: #35b9bb;}
+a:hover {color:#0A8A90;}
+.srh_main {margin:0 auto; padding: 20px;max-width:1800px;min-width:1200px; }
+.srh_header { height: 56px;}
+.srh_header h1 { float: left; font-size: 30px; font-weight:bold; color: #35b9bb;}
+.srh_header_srh { float: left;margin-left: 20px;}
+.srh_header_user { float: right; margin: 12px 0 0 0;}
+.srh_header_city .layui-select-title .layui-unselect {border: none; width: 80px; background: transparent; font-size: 20px;}
+.srh_box { height: 38px; padding: 15px; background: #fff;border: 1px solid #dee2eb; box-shadow:0px 4px 8px -5px rgba(0,0,0,.3);z-index: 100; position: relative;}
+.srh_box_son {float:left;}
+.srh_box_buy { float: right; padding: 5px 0 0 0;}
+.srh_box_buy a { color: #333;}
+.srh_contnet { background: #fff;border: 1px solid #dee2eb; border-top: none;}
+.srh_contnet_map { height: 800px; margin: 0 310px 0 0; background: #999;}
+.srh_contnet_side {float: right;width: 310px;}
+.srh_contnet_side h5 { padding:10px; font-size: 12px; color: #888; background: #f2f2f2;}
+.srh_contnet_side_box { height: 110px; overflow: hidden; padding: 0 0 10px 0; margin: 12px; border-bottom: 1px solid #eee;}
+.srh_contnet_side_box_pic { float: left; width: 85px;}
+.srh_contnet_side_box_con { margin-left: 95px; font-size: 13px; color: #999;}
+.srh_contnet_side_box_con dl dt {float:left;}
+.srh_contnet_side_box_con dl dt h2 { padding: 6px 0; font-size: 16px; font-weight: bold; color: #000;}
+.srh_contnet_side_box_con dl dt p { line-height: 1.9;}
+.srh_contnet_side_box_con dl dd {float:right; text-align: right;}
+.srh_contnet_side_box_con dl dd span { display: block; margin: 28px 0 0 0; font-size:20px; color: #f60;}
+.srh_contnet_side_box_con dl dd p .layui-icon { display: inline-block; margin: 10px 0 0 0; font-size: 24px; color:#35b9bb; cursor: pointer;}
+.clear {clear: both;}
+.srh_msg_layer { width: 780px; margin: 30px auto; background:#fff;}
+.srh_msg_layer h3 { padding: 12px 15px; font-size: 18px; }
+.srh_msg_layer h3 i { float:right; height: 16px; width: 16px; overflow: hidden;border: 1px solid #a3b8cc; border-radius: 3px; padding: 5px;color:#a3b8cc; font-size: 16px; line-height: 1;}
+.srh_msg_layer h3 i { float:right; height: 16px; width: 16px; overflow: hidden;border: 1px solid #a3b8cc; border-radius: 3px; padding: 5px;color:#a3b8cc; font-size: 16px; line-height: 1;}
+.srh_msg_layer_con {padding:0 15px 15px 15px;}
+.srh_msg_layer_con table.layui-table {margin: 0;}

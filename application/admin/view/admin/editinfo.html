@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人资料</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content="LarryCMS Version:1.09"/>
+    <meta name="Author" content="larry"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="Shortcut Icon" href="/favicon.ico"/>
+    <!-- load css -->
+    <link rel="stylesheet" type="text/css" href="/static/common/frame/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/gobal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/animate.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/mypanel.css" media="all">
+</head>
+<body>
+<div class="larry-fluid larry-wrapper">
+    <div class="layui-row lay-col-space20">
+        <div class="layui-cos-xs12 layui-col-sm12 layui-col-md12 layui-col-lg12">
+            <section class="larry-body animated fadeInRightBig">
+                <div class="larry-body-header">
+                    <span class="tit">个人资料</span>
+                </div>
+                <div class="larry-body-content clearfix">
+                    <form class="layui-form layui-form-pane" method="post">
+                        <div class="user_left">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="name" value="{$admininfo.name}" autocomplete="off" class="layui-input layui-disabled" value="" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">角色</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="role_id" autocomplete="off" class="layui-input layui-disabled" value="{$admininfo.role}" disabled="disabled">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"><em>*</em>手机号</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="mobile" value="{$admininfo.mobile}" lay-verify="required|phone" placeholder="请输入手机号" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">性别</label>
+                                <div class="layui-input-block layui-input-7">
+                                    <input type="radio" name="sex" lay-filter="sex" {if condition="$admininfo.sex eq 1"}checked{/if}  value="1" title="男">
+                                    <input type="radio" name="sex" lay-filter="sex" {if condition="$admininfo.sex eq 2"}checked{/if}  value="2" title="女">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">职务</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="post" autocomplete="off" class="layui-input" value="{$admininfo.post}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">修改头像</label>
+                                <div class="layui-input-block">
+                                    <input type="hidden" id="avatar" name="avatar" value="{$admininfo.avatar}">
+                                    <button type="button" class="layui-btn" id="larry_photo"><i class="layui-icon">&#xe67c;</i>上传文件</button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"><em>*</em>邮箱</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="mail" value="{$admininfo.mail}" lay-verify="email" placeholder="请输入邮箱" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item layui-form-text">
+                                <label class="layui-form-label">个人简介</label>
+                                <div class="layui-input-block" style="width:100%;">
+                                    <textarea name="introduction" placeholder="请输入个人简介" class="layui-textarea">{$admininfo.introduction}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user_right">
+                            <img src="{notempty name='admininfo.avatar'}{:config('url_domain')['img']}{$admininfo.avatar}{else/}/static/images/photo/admin.png{/notempty}" class="layui-circle" id="userFace">
+                            <p>头像预览</p>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="button" class="layui-btn" lay-submit="" lay-filter="auth">立即提交</button>
+                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!-- 加载js文件 -->
+<script type="text/javascript" src="/static/common/frame/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/common.js"></script>
+<script type="text/javascript">
+    layui.use(['form','upload','layer','jquery'],function(){
+        var $ = layui.$,
+            form = layui.form,
+            upload = layui.upload,
+            layer = layui.layer;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#larry_photo' //绑定元素
+            ,url: "{:URL('index/uploadimg');}"    //上传接口
+            ,accept: 'images'
+            ,field: "image"
+            ,data:{folder:'avatar'}
+            ,exts: 'jpg|png|gif|jpeg'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#userFace').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                if(res.code > 0){
+                    //上传成功
+                    $("#avatar").val(res.data.imgUrl);
+                    $("#userFace").attr('src',res.data.attachmentUrl);
+                }else{
+                    //如果上传失败
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+
+            }
+            ,error: function(){
+                layer.msg('上传失败！',{time:1000,icon:2});
+            }
+        });
+
+        form.on('submit(auth)', function (data) {
+            // 提交到方法 默认为本身
+            $.post("{:url('editInfo')}",data.field,function(res){
+                if(res.code > 0){
+                    layer.msg(res.msg,{time:1000,icon:1});
+                }else{
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

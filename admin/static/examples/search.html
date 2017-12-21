@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>筛选点位</title>
+<link rel="stylesheet" type="text/css" href="/static/common/frame/layui/css/layui.css" media="all">
+<style>
+	body {background: #e6e9f0;}
+	a {color: #35b9bb;}
+	a:hover {color:#0A8A90;}
+	.srh_main {margin:0 auto; padding: 20px;max-width:1800px;min-width:1200px; }
+	.srh_header { height: 56px;}
+	.srh_header h1 { float: left; font-size: 30px; font-weight:bold; color: #35b9bb;}
+	.srh_header_srh { float: left;margin-left: 20px;}
+	.srh_header_user { float: right; margin: 12px 0 0 0;}
+	.srh_header_city .layui-select-title .layui-unselect {border: none; width: 80px; background: transparent; font-size: 20px;}
+	.srh_box { height: 38px; padding: 15px; background: #fff;border: 1px solid #dee2eb; box-shadow:0px 4px 8px -5px rgba(0,0,0,.3);z-index: 100; position: relative;}
+	.srh_box_son {float:left;}
+	.srh_box_buy { float: right; padding: 5px 0 0 0;}
+	.srh_box_buy a { color: #333;}
+	.srh_contnet { background: #fff;border: 1px solid #dee2eb; border-top: none;}
+	.srh_contnet_map { height: 800px; margin: 0 310px 0 0; background: #999;}
+	.srh_contnet_side {float: right;width: 310px;}
+	.srh_contnet_side h5 { padding:10px; font-size: 12px; color: #888; background: #f2f2f2;}
+	.srh_contnet_side_box { height: 110px; overflow: hidden; padding: 0 0 10px 0; margin: 12px; border-bottom: 1px solid #eee;}
+	.srh_contnet_side_box_pic { float: left; width: 85px;}
+	.srh_contnet_side_box_con { margin-left: 95px; font-size: 13px; color: #999;}
+	.srh_contnet_side_box_con dl dt {float:left;}
+	.srh_contnet_side_box_con dl dt h2 { padding: 6px 0; font-size: 16px; font-weight: bold; color: #000;}
+	.srh_contnet_side_box_con dl dt p { line-height: 1.9;}
+	.srh_contnet_side_box_con dl dd {float:right; text-align: right;}
+	.srh_contnet_side_box_con dl dd span { display: block; margin: 28px 0 0 0; font-size:20px; color: #f60;}
+	.srh_contnet_side_box_con dl dd p .layui-icon { display: inline-block; margin: 10px 0 0 0; font-size: 24px; color:#35b9bb; cursor: pointer;}
+	.clear {clear: both;}
+	.srh_msg_layer { width: 780px; margin: 30px auto; background:#fff;}
+	.srh_msg_layer h3 { padding: 12px 15px; font-size: 18px; }
+	.srh_msg_layer h3 i { float:right; height: 16px; width: 16px; overflow: hidden;border: 1px solid #a3b8cc; border-radius: 3px; padding: 5px;color:#a3b8cc; font-size: 16px; line-height: 1;}
+	.srh_msg_layer h3 i { float:right; height: 16px; width: 16px; overflow: hidden;border: 1px solid #a3b8cc; border-radius: 3px; padding: 5px;color:#a3b8cc; font-size: 16px; line-height: 1;}
+	.srh_msg_layer_con {padding:0 15px 15px 15px;}
+	.srh_msg_layer_con table.layui-table {margin: 0;}
+</style>
+</head>
+
+<body>
+<div class="srh_main">
+	<div class="srh_header">
+		<h1>广新广告</h1>
+			<div class="srh_header_srh">
+			<form class="layui-form">
+				<div class="layui-input-inline srh_header_city">
+						<select name="quiz1">
+							<option value="">区域</option>
+							<option value="" selected="">郑州</option>
+							<option value="开封">开封</option>
+							<option value="洛阳">洛阳</option>
+						</select>
+					</div>
+					<div class="layui-input-inline">
+						<input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输想找媒体的位置" class="layui-input">
+					</div>&nbsp;&nbsp;
+					<button class="layui-btn">搜索</button>
+			</form>
+			</div>
+			<div class="srh_header_user">客户：魔飞公寓&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">投放方案</a>&nbsp;&nbsp;&nbsp;&nbsp;客户经理：赵新生  13822134523</div>
+	</div>
+	<div class="srh_box">
+		<div class="srh_box_son">
+			<form class="layui-form">
+				<div class="layui-input-inline" style="width: 120px;">
+					<select name="quiz1">
+						<option value="">媒体类型</option>
+						<option value="" selected="">电梯框架</option>
+						<option value="">公交站台</option>
+						<option value="">社区门禁</option>
+					</select>
+				</div>&nbsp;&nbsp;
+				<div class="layui-inline">
+					<label class="">档期选择</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" id="test6" placeholder=" - " style="width: 190px;">
+					</div>
+				</div>&nbsp;&nbsp;
+				<div class="layui-input-inline" style="width: 120px;">
+					<select name="quiz1">
+						<option value="">媒体类型</option>
+						<option value="" selected="">电梯框架</option>
+						<option value="">公交站台</option>
+						<option value="">社区门禁</option>
+					</select>
+				</div>&nbsp;&nbsp;
+				<div class="layui-input-inline" style="width: 120px;">
+					<select name="quiz1">
+						<option value="">媒体类型</option>
+						<option value="" selected="">电梯框架</option>
+						<option value="">公交站台</option>
+						<option value="">社区门禁</option>
+					</select>
+				</div>&nbsp;&nbsp;
+				<div class="layui-input-inline" style="width: 120px;">
+					<select name="quiz1">
+						<option value="">媒体类型</option>
+						<option value="" selected="">电梯框架</option>
+						<option value="">公交站台</option>
+						<option value="">社区门禁</option>
+					</select>
+				</div>&nbsp;&nbsp;
+				<div class="layui-input-inline" style="width: 120px;">
+					<select name="quiz1">
+						<option value="">媒体类型</option>
+						<option value="" selected="">电梯框架</option>
+						<option value="">公交站台</option>
+						<option value="">社区门禁</option>
+					</select>
+				</div>&nbsp;&nbsp;
+			</form>
+		</div>
+		<div class="srh_box_buy">
+			<a href="#"><i class="layui-icon" style="font-size: 24px;">&#xe698;</i> 已选点位10个，覆盖3个项目</a>
+		</div>
+	</div>
+	<div class="srh_contnet">
+		<div class="srh_contnet_side">
+			<h5>共找到14个项目，103块空余点</h5>
+			<div class="srh_contnet_side_box">
+				<div class="srh_contnet_side_box_pic">
+				<img src="../images/login/1.jpg" width="85" height="110" alt=""/> </div>	
+				<div class="srh_contnet_side_box_con">
+					<dl>
+						<dt>
+							<h2>标题</h2>
+							<p>金水区</p>
+							<p>1栋  32层</p>
+							<p>2013交房 92%入住率</p>
+						</dt>
+						<dd>
+							<p><span>120</span>元/周</p>
+							<p><i class="layui-icon">&#xe61f;</i></p>
+						</dd>
+					</dl>
+				</div>	
+			</div>
+			<div class="srh_contnet_side_box">
+				<div class="srh_contnet_side_box_pic">
+				<img src="../images/login/1.jpg" width="85" height="110" alt=""/> </div>	
+				<div class="srh_contnet_side_box_con">
+					<dl>
+						<dt>
+							<h2>标题</h2>
+							<p>金水区</p>
+							<p>1栋  32层</p>
+							<p>2013交房 92%入住率</p>
+						</dt>
+						<dd>
+							<p><span>120</span>元/周</p>
+							<p><i class="layui-icon">&#xe61f;</i></p>
+						</dd>
+					</dl>
+				</div>	
+			</div>
+			<div class="srh_contnet_side_box">
+				<div class="srh_contnet_side_box_pic">
+				<img src="../images/login/1.jpg" width="85" height="110" alt=""/> </div>	
+				<div class="srh_contnet_side_box_con">
+					<dl>
+						<dt>
+							<h2>标题</h2>
+							<p>金水区</p>
+							<p>1栋  32层</p>
+							<p>2013交房 92%入住率</p>
+						</dt>
+						<dd>
+							<p><span>120</span>元/周</p>
+							<p><i class="layui-icon">&#xe61f;</i></p>
+						</dd>
+					</dl>
+				</div>	
+			</div>
+			<div class="srh_contnet_side_box">
+				<div class="srh_contnet_side_box_pic">
+				<img src="../images/login/1.jpg" width="85" height="110" alt=""/> </div>	
+				<div class="srh_contnet_side_box_con">
+					<dl>
+						<dt>
+							<h2>标题</h2>
+							<p>金水区</p>
+							<p>1栋  32层</p>
+							<p>2013交房 92%入住率</p>
+						</dt>
+						<dd>
+							<p><span>120</span>元/周</p>
+							<p><i class="layui-icon">&#xe61f;</i></p>
+						</dd>
+					</dl>
+				</div>	
+			</div>
+			<div class="srh_contnet_side_box">
+				<div class="srh_contnet_side_box_pic">
+				<img src="../images/login/1.jpg" width="85" height="110" alt=""/> </div>	
+				<div class="srh_contnet_side_box_con">
+					<dl>
+						<dt>
+							<h2>标题</h2>
+							<p>金水区</p>
+							<p>1栋  32层</p>
+							<p>2013交房 92%入住率</p>
+						</dt>
+						<dd>
+							<p><span>120</span>元/周</p>
+							<p><i class="layui-icon">&#xe61f;</i></p>
+						</dd>
+					</dl>
+				</div>	
+			</div>
+		</div>
+		<div class="srh_contnet_map">
+			地图
+			<div class="srh_msg_layer">
+				<h3><i class="layui-icon" >&#x1006;</i>备选框</h3>
+				<div class="srh_msg_layer_con">
+					<table class="layui-table">
+						<colgroup>
+							<col width="">
+							<col width="">
+							<col>
+						</colgroup>
+						<thead>
+							<tr>
+								<th>编号</th>
+								<th>项目</th>
+								<th>楼栋</th>
+								<th>单元</th>
+								<th>安装位置</th>
+								<th>规格</th>
+								<th>销售价</th>
+								<th>投放时段</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr> 
+						</thead>
+						<tbody>
+							<tr>
+								<td>T548346513</td>
+								<td>苏荷中心</td>
+								<td>1号楼</td>
+								<td>1单元</td>
+								<td>客椅1</td>
+								<td>框架1.0</td>
+								<td>120元/周</td>
+								<td>9.14~9.21</td>
+								<td>空闲</td>
+								<td><i class="layui-icon">&#xe640;</i></td>
+							</tr>
+							<tr>
+								<td>T548346513</td>
+								<td>苏荷中心</td>
+								<td>1号楼</td>
+								<td>1单元</td>
+								<td>客椅1</td>
+								<td>框架1.0</td>
+								<td>120元/周</td>
+								<td>9.14~9.21</td>
+								<td>空闲</td>
+								<td><i class="layui-icon">&#xe640;</i></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="clear"></div>
+</div>
+<script src="/static/common/frame/layui/layui.js"></script>
+<script>
+	layui.use('element', function(){
+  var element = layui.element;
+  
+	});
+	layui.use('form', function(){
+  var form = layui.form;
+  
+  //各种基于事件的操作，下面会有进一步介绍
+	});
+	
+	layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+	//开启公历节日
+  laydate.render({
+    elem: '#test6'
+    ,calendar: true
+  });
+	
+	layui.use('form', function(){
+  var form = layui.form;
+  
+  //各种基于事件的操作，下面会有进一步介绍
+	});
+	layui.use('table', function(){
+  var table = layui.table;
+	});
+});
+</script>
+</body>
+</html>

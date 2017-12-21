@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="LarryCMS Version:1.09" />
+    <meta name="Author" content="larry" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="Shortcut Icon" href="/favicon.ico" />
+    <!-- load css -->
+    <link rel="stylesheet" type="text/css" href="/static/common/frame/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/gobal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css" media="all">
+</head>
+</head>
+<body>
+<div class="layui-fluid larry-wrapper">
+    <blockquote class="layui-elem-quote larry-btn">
+        <div class="layui-inline" id="larry-btn">
+            <div class="layui-inline">
+                <a class="layui-btn" data-type="addData">添加角色</a>
+            </div>
+        </div>
+    </blockquote>
+    <!-- 数据列表 -->
+    <div class="diy_main_content">
+			<div class="flinkTable">
+				<table id="list" lay-filter="list"></table>
+			</div>
+			<div id="larry-btn-bottom" class="larry-btn-bottom">
+                <div class="layui-inline">
+                    <a id="delChoice" class="layui-btn layui-btn-normal layui-btn-sm" data-type="delChoice">批量删除</a>
+                </div>
+            </div>
+	</div>
+</div>
+<script type="text/html" id="auth">
+    <a class="layui-btn layui-btn-xs" lay-event="auth">设置</a>
+</script>
+<script type="text/html" id="status">
+   <input type="checkbox"  value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="sexStatus" {{ d.status == 1 ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="action">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<!-- 加载js文件 -->
+<script type="text/javascript" src="/static/common/frame/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/common.js"></script>
+<script type="text/javascript">
+var tableIns;
+layui.use(['form','layer', 'table', 'common'], function() {
+    var $ = layui.$,
+        layer = layui.layer,
+        form = layui.form,
+        table = layui.table,
+        common = layui.common;
+
+    tableIns = table.render({
+        id: 'list',
+        elem: '#list',
+        url: '{:url("index")}',
+        method: 'post',
+        page: true,
+        cols: [[
+            {checkbox: true, width: 60, fixed: true},
+            {field: 'id', title: '编号', width: 90, fixed: true, sort: true},
+            {field: 'name', align: 'center',title: '名称', width: 120,templet: '#icon'},
+            {field: 'auth',align: 'center', title: '权限', width: 120, templet: '#auth'},
+            {field: 'status',align: 'center',title: '状态', width: 120,templet: '#status'},
+            {field: 'addtime',align: 'center', title: '添加时间', width: 220},
+            {width: 200,align: 'center', title: '操作', toolbar: '#action'}
+        ]],
+        limit: 30 //每页默认显示的数量
+    });
+    //监听工具条
+    table.on('tool(list)', function(obj){
+        var data = obj.data;
+        if(obj.event === 'auth'){
+            var index = layer.open({
+                title: "设置权限",
+                type: 2,
+                skin:'larry-green',
+                area: ['500px', '500px'],
+                content: '{:url("setAuth")}?id='+data.id
+            });
+        }
+        else if (obj.event === 'edit') {
+            var index = layer.open({
+                title: "角色编辑",
+                type: 2,
+                skin:'larry-green',
+                area: ['420px', '230px'],
+                content: '{:url("editData")}?id='+data.id
+            });
+        }
+        else if(obj.event === 'del'){
+            layer.confirm('您确定要删除‘'+data.name+'’的记录吗？', function(index){
+                var loading = layer.load(1, {shade: [0.1, '#fff']});
+                $.post("{:url('delData')}",{id:data.id},function(res){
+                    layer.close(loading);
+                    if(res.code==1){
+                        layer.msg(res.msg,{time:1000,icon:1});
+                        obj.del();
+                    }else{
+                        layer.msg(res.msg,{time:1000,icon:2});
+                    }
+                });
+                layer.close(index);
+            });
+        }
+    });
+    form.on('switch(sexStatus)', function(obj){
+        var id = $(this).val();
+        var loading =layer.load(1, {shade: [0.1,'#fff']});
+        $.post('{:url("setStatus")}',{'id':id},function (res) {
+            layer.close(loading);
+            if (res.code==1) {
+                if (res.data.status == 1) {
+                    obj.update({
+                        status: '<input type="checkbox"  value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="sexStatus" checked>'
+                    });
+                } else {
+                    obj.update({
+                        status: '<input type="checkbox"  value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="sexStatus" >'
+                    });
+                }
+            }else{
+                layer.msg('操作失败！',{time:1000,icon:2});
+                return false;
+            }
+        })
+    });
+    //表单顶部按钮操作
+    $('#larry-btn a.layui-btn,#larry-btn-bottom a.layui-btn').on('click',function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+    var active = {
+        addData: function() {
+            var index = layer.open({
+                title: "角色添加",
+                type: 2,
+                skin:'larry-green',
+                area: ['420px', '230px'],
+                content: '{:url("addData")}'
+            });
+        },
+        delChoice:function(){
+            var checkStatus = table.checkStatus('list'); //test即为参数id设定的值
+            if(checkStatus.data.length>0){
+                layer.confirm('确认要删除选中信息吗？', {icon: 3}, function(index) {
+                    layer.close(index);
+                    var ids = [];
+                    $(checkStatus.data).each(function (i, o) {
+                        ids.push(o.id);
+                    });
+                    var loading = layer.load(1, {shade: [0.1, '#fff']});
+                    $.post("{:url('delChoice')}", {ids: ids}, function (data) {
+                        layer.close(loading);
+                        if (data.code === 1) {
+                            layer.msg(data.msg, {time: 1000, icon: 1});
+                            tableIns.reload();
+                        } else {
+                            layer.msg(data.msg, {time: 1000, icon: 2});
+                        }
+                    });
+                });
+            }else{
+                layer.tips('请选择要删除的数据！', $('#delChoice'), {
+                    tips: [3, '#5FB878']
+                });
+            }
+        }
+    };
+});
+</script>
+</body>
+</html>

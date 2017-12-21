@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项管理</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="LarryCMS Version:1.09" />
+    <meta name="Author" content="larry" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="Shortcut Icon" href="/favicon.ico" />
+    <!-- load css -->
+    <link rel="stylesheet" type="text/css" href="/static/common/frame/layui/css/layui.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/common/css/gobal.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css" media="all">
+    <link rel="stylesheet" type="text/css" href="/static/css/mypanel.css" media="all">
+    <style>
+        body{
+           overflow-y: scroll;
+        }
+    </style>
+</head>
+</head>
+<body>
+<div class="layui-fluid larry-wrapper" style="background: none;">
+    <blockquote class="layui-elem-quote larry-btn">
+        <div class="layui-inline">
+            <a class="layui-btn" data-type="addData" data-id="" id="add">添加选项</a>
+        </div>
+    </blockquote>
+    <!-- 数据列表 -->
+    <div class="layui-tab layui-tab-card layui-mypanel-tab" lay-filter="tableTab">
+        <ul class="layui-tab-title">
+            {volist name="info" id="vo"}
+                <li data-id="{$vo.id}" class="{if condition="$vo.id eq 1"}layui-this{/if}">{$vo.title}</li>
+            {/volist}
+        </ul>
+        <div class="layui-tab-content" style="width: 85%;">
+            <div id="table-view" class="site-tips">
+                <div class="flinkTable">
+                    <table id="list" lay-filter="list"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="type">
+    {{# if(d.type==1){ }}
+        下拉
+    {{# }else if(d.type==2){  }}
+        单选
+    {{# }else if(d.type==3){ }}
+        复选
+    {{# } }}
+</script>
+<script type="text/html" id="status">
+   <input type="checkbox"  value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="setStatus" {{ d.status == 1 ? 'checked' : '' }}>
+</script>
+<script type="text/html" id="order">
+    <input name="{{d.id}}" data-id="{{d.id}}" class="list_order layui-input" value=" {{d.sort}}" size="10" title="数值越大越靠后"/>
+</script>
+<script type="text/html" id="icon">
+    <span class="larry-icon" data-icon="{{d.icon}}">{{d.icon}}</span>
+</script>
+<script type="text/html" id="action">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<!-- 加载js文件 -->
+<script type="text/javascript" src="/static/common/frame/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/common.js"></script>
+<script type="text/javascript">
+var tableIns;
+layui.use(['form','element','layer', 'table', 'common'], function() {
+    var $ = layui.$,
+        layer = layui.layer,
+        form = layui.form,
+        element = layui.element,
+        table = layui.table,
+        common = layui.common;
+
+    tableIns =table.render({
+        elem: '#list',
+        url: '{:url("index")}',
+        method: 'post',
+        cols: [[
+            {field: 'id', title: '编号', width: 70, fixed: true},
+            {field: 'icon', align: 'center',title: '图标',templet: '#icon'},
+            {field: 'title', title: '选项名称', width: 200},
+            {field: 'type', align: 'center', title: '选项类型',toolbar: '#type'},
+            {field: 'status',align: 'center',title: '选项状态',toolbar: '#status'},
+            {field: 'sort',align: 'center', title: '排序',  templet: '#order'},
+            {align: 'center', title: '操作', toolbar: '#action'}
+        ]],
+    });
+    //选项卡
+    element.on('tab(tableTab)', function(data){
+        var id = $(this).attr('data-id');
+        $('#add').attr('data-id',id);
+        tableIns.reload({
+            where: {parent_id: id}
+        });
+    });
+    //监听工具条
+    table.on('tool(list)', function(obj){
+        var data = obj.data;
+        if (obj.event === 'edit') {
+            var index = layer.open({
+                title: "选项编辑",
+                type: 2,
+                skin:'larry-green',
+                area: ['500px', '520px'],
+                content: '{:url("editData")}?id='+data.id
+            });
+        }
+        else if(obj.event === 'del'){
+            layer.confirm('您确定要删除该记录吗？', function(index){
+                var loading = layer.load(1, {shade: [0.1, '#fff']});
+                $.post("{:url('delData')}",{id:data.id},function(res){
+                    layer.close(loading);
+                    if(res.code==1){
+                        layer.msg(res.msg,{time:1000,icon:1});
+                        obj.del();
+                    }else{
+                        layer.msg(res.msg,{time:1000,icon:2});
+                    }
+                });
+                layer.close(index);
+            });
+        }
+    });
+    $('body').on('blur','.list_order',function() {
+        var id = $(this).attr('data-id');
+        var sort = $(this).val();
+        var old_sort = $(this).attr('data-value');
+        if(sort != old_sort){
+            $.post('{:url("setOrder")}',{id:id,sort:sort},function(res){
+                if(res.code==1){
+                    layer.msg(res.msg,{time:1000,icon:1},function(){
+                        tableIns.reload();
+                    });
+                }else{
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+            })
+        } 
+    });
+    form.on('switch(setStatus)', function(obj){
+        var id = $(this).val();
+        var loading =layer.load(1, {shade: [0.1,'#fff']});
+        $.post('{:url("setStatus")}',{'id':id},function (res) {
+            layer.close(loading);
+            if (res.code==1) {
+                if (res.data.status == 1) {
+                    obj.update({
+                        status: '<input type="checkbox"  value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="setStatus" checked>'
+                    });
+                } else {
+                    obj.update({
+                        status: '<input type="checkbox"  value="{{d.id}}" lay-skin="switch" lay-text="显示|隐藏" lay-filter="setStatus" >'
+                    });
+                }
+            }else{
+                layer.msg('操作失败！',{time:1000,icon:2});
+                return false;
+            }
+        })
+    });
+    //表单顶部按钮操作
+    $('.larry-btn a.layui-btn').on('click',function(){
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+    var active = {
+        addData: function() {
+            var id = $('#add').attr('data-id');
+            var index = layer.open({
+                title: "选项添加",
+                type: 2,
+                skin:'larry-green',
+                area: ['500px', '520px'],
+                content: '{:url("addData")}?id='+id
+            });
+        }
+    };
+});
+</script>
+</body>
+</html>

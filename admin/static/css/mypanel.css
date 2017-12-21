@@ -1,0 +1,88 @@
+html{
+	height: 100%;
+	width: 100%;
+}
+body{
+	background: #F1F2F7;
+	height: 100%;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+.larry-wrapper{
+	margin: 15px;
+	padding: 0px;
+	border-radius: 3px;
+	background: #ffffff;
+    border: 1px solid #F1F2F7;
+    box-shadow: 0px 1px 1px #F1F2F7;
+}
+.larry-body{
+	margin: 0 auto;
+	width: 100%;
+	height: auto;
+}
+.larry-body .larry-body-header{
+	width: 100%;
+	height: 50px;
+	border-bottom: 1px solid #EEEFF1;
+	padding:0 20px;
+	padding-left: 30px;
+}
+.larry-body .larry-body-header span.tit{
+	line-height: 50px;
+	font-size: 16px;
+	color: #666666;
+	font-weight: 300;
+}
+.larry-body .larry-body-content{
+	padding: 20px;
+	padding-right: 40px;
+}
+
+.layui-form .layui-form-item label.layui-form-label{
+	/*width: 120px;*/
+	font-family: "Microsoft YaHei";
+}
+.layui-input-block{
+	margin-left: 160px;
+	width: auto;
+}
+.layui-disabled{
+	/*background: #EEEEEE;*/
+	/*color: #595963 !important;*/
+}
+.layui-disabled:hover{
+	color: #595963 !important;
+}
+.layui-input-block textarea{
+	height: 90px;
+}
+/* 修改密码 */
+.larry-body .changepwd{
+	padding-bottom: 60px;
+}
+.larry-body-content .change-submit{
+	padding-top: 20px;
+}
+.larry-body-content .change-submit .larry-tj{
+	margin-right: 20px;
+}
+
+.user_left{ width:410px; float: left; }
+.user_right{ width:25%; float: left; text-align: center; }
+.user_right img#userFace{ border:2px solid #44576B; width:200px; height:200px; background:#393D49;}
+.user_right p{margin-top: 10px; color: #FF5722; }
+/*适配*/
+@media screen and (max-width:1050px){
+	/*用户信息*/
+	.user_left,.user_right{ width:100%; float:none; margin-left: 0; }
+	.user_right{ margin-bottom: 20px; }
+}
+.layui-wrapper-tab{ background: none;}
+.layui-mypanel-tab{ display: inline-block; width: 100%; margin: 0px; background-color: #ffffff;}
+.layui-mypanel-tab > .layui-tab-title{ width: 20%; height: 100%; float: left; display: inline-block; border: none; background-color: #ffffff; max-width:200px;}
+.layui-mypanel-tab > .layui-tab-title li{ width: 100%; padding:0px; float: left;}
+.layui-mypanel-tab > .layui-tab-title .layui-this{ margin: 0px; background-color: #e6e6e6;}
+.layui-mypanel-tab > .layui-tab-title .layui-this::after{ border: none;}
+.layui-mypanel-tab > .layui-tab-content{ width: 60%; float: left; border-left: 1px solid #e6e6e6;}
