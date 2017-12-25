@@ -696,6 +696,19 @@ html,body{
 	background: #FE5722;
 	color: #ffffff;
 }
+.lock-wrapper .lock-form .layui-form-item button.layui-btn{
+	display: block;
+	width: 100px;
+	text-align: center;
+	margin: 0 auto;
+	line-height: 40px;
+	height: 40px;
+	color: #ffffff;
+}
+.lock-wrapper .lock-form .layui-form-item button.layui-btn:hover{
+	background: #FE5722;
+	color: #ffffff;
+}
 
 
 /* 后台界面主题配色解决方案 */

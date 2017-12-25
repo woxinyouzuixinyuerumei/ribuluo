@@ -48,7 +48,7 @@
         empty: true,
         limit: 10,
         customClass: [],
-        cache: true,
+        cache: false,
         focusOpen: true,
         hint: false,
         selectFirst: false,
@@ -588,6 +588,8 @@
         var data = e.data;
 
         if (!internal) {
+			console.log(data);
+			if(data.index==-1&&data.query=='')data.callback.call(data.$autocompleter,0,-1,[]);
             data.$autocompleter.removeClass("autocompleter-focus");
             _close(e);
         }

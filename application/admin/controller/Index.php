@@ -22,9 +22,9 @@ class Index extends Common
         $authRule = db('auth_rule')->field('id,href as url,title,icon,parent_id as pid,spread')->where('type=0 and menustatus=1')->order('sort,id asc')->select();
         foreach ($authRule as $key=>&$val){
             $val['url'] = url($val['url']);
-            if(!in_array($val['id'],$this->adminAuth)){
+           /* if(!in_array($val['id'],$this->adminAuth)){
                 unset($authRule[$key]);
-            }
+            }*/
         }
         $result = array();
         $result = list_to_tree($authRule,'id', 'pid','children');

@@ -6,24 +6,26 @@ a:hover {color:#0A8A90;}
 .srh_header h1 { float: left; font-size: 30px; font-weight:bold; color: #35b9bb;}
 .srh_header_srh { float: left;margin-left: 20px;}
 .srh_header_user { float: right; margin: 12px 0 0 0;}
-.srh_header_city .layui-select-title .layui-unselect {border: none; width: 80px; background: transparent; font-size: 20px;}
+.srh_header_city .layui-select-title .layui-unselect {border: none; width: 100px; background: transparent; font-size: 20px;}
 .srh_box { height: 38px; padding: 15px; background: #fff;border: 1px solid #dee2eb; box-shadow:0px 4px 8px -5px rgba(0,0,0,.3);z-index: 100; position: relative;}
 .srh_box_son {float:left;}
 .srh_box_buy { float: right; padding: 5px 0 0 0;}
 .srh_box_buy a { color: #333;}
 .srh_contnet { background: #fff;border: 1px solid #dee2eb; border-top: none;}
 .srh_contnet_map { height: 800px; margin: 0 310px 0 0; background: #999;}
-.srh_contnet_side {float: right;width: 310px;}
+.srh_contnet_side {float: right;width: 310px; height: 800px; overflow-x: hidden; overflow-y: auto;}
 .srh_contnet_side h5 { padding:10px; font-size: 12px; color: #888; background: #f2f2f2;}
+.srh_contnet_side .page{ text-align: center; width: 100%;}
 .srh_contnet_side_box { height: 110px; overflow: hidden; padding: 0 0 10px 0; margin: 12px; border-bottom: 1px solid #eee;}
-.srh_contnet_side_box_pic { float: left; width: 85px;}
+.srh_contnet_side_box_pic { float: left; width: 85px; background: #E4EBEB;}
 .srh_contnet_side_box_con { margin-left: 95px; font-size: 13px; color: #999;}
-.srh_contnet_side_box_con dl dt {float:left;}
-.srh_contnet_side_box_con dl dt h2 { padding: 6px 0; font-size: 16px; font-weight: bold; color: #000;}
+.srh_contnet_side_box_con dl dt {float:left; width:150px;}
+.srh_contnet_side_box_con dl dt h2 { padding: 6px 0; font-size: 16px; font-weight: bold; color: #000; height: 20px; line-height: 24px; overflow: hidden;}
 .srh_contnet_side_box_con dl dt p { line-height: 1.9;}
 .srh_contnet_side_box_con dl dd {float:right; text-align: right;}
 .srh_contnet_side_box_con dl dd span { display: block; margin: 28px 0 0 0; font-size:20px; color: #f60;}
 .srh_contnet_side_box_con dl dd p .layui-icon { display: inline-block; margin: 10px 0 0 0; font-size: 24px; color:#35b9bb; cursor: pointer;}
+.srh_contnet_side_nodata{ text-align: center; width: 100%; padding: 30px 0;}
 .clear {clear: both;}
 .srh_msg_layer { width: 780px; margin: 30px auto; background:#fff;}
 .srh_msg_layer h3 { padding: 12px 15px; font-size: 18px; }
@@ -31,3 +33,24 @@ a:hover {color:#0A8A90;}
 .srh_msg_layer h3 i { float:right; height: 16px; width: 16px; overflow: hidden;border: 1px solid #a3b8cc; border-radius: 3px; padding: 5px;color:#a3b8cc; font-size: 16px; line-height: 1;}
 .srh_msg_layer_con {padding:0 15px 15px 15px;}
 .srh_msg_layer_con table.layui-table {margin: 0;}
+
+.hiddenTxt{overflow:hidden;white-space:nowrap;text-overflow: ellipsis;} /*隐藏多余文字*/
+.site_pop{width: 263px;background-color: #fff;position: absolute;top:-306px;left:-134px;padding: 5px 5px 60px;-webkit-box-shadow: 0 1px 5px rgba(4,0,0,.25);display:none;
+    -moz-box-shadow: 0 1px 5px rgba(4,0,0,.25);box-shadow: 0 1px 5px rgba(4,0,0,.25);z-index:999}
+.site_room{position: relative;}
+.resule_img_div{height: 195px; overflow: hidden;}
+.resule_img_div img{width: 100%;}
+.result_btm_con{position: absolute;bottom:-50px;left: 0;width: 100%;cursor:pointer;}
+.result_intro {padding: 7px 0 0 0;display: block;line-height: 22px;clear: both;background-color: #fff;}
+.result_intro a{TEXT-DECORATION:none}
+.result_title {display: block;font-size: 14px;color: #333;padding: 0px;font-family:"microsoft yahei";}
+.result_intro .result_title em{color: #959ea7;padding: 0 0 0 10px;font-size: 12px; font-style: normal; display: inline;}
+.result_intro em {color: #959ea7;padding: 0px;display: block;font-size: 12px; font-style: normal;}
+.icon_logo,.site_tri{background: url("../images/icon_list.png") no-repeat;}
+.site_tri{background-position: -25px -417px;position: absolute;bottom:-13px;left: 123px; width: 25px;height: 14px;display: inline-block;}
+.icon_logo{background-position: 0 -452px; width:33px;height: 39px;display: inline-block; position: absolute;left: 30px;cursor:pointer;}
+.site_pop .icon_logo{bottom:-51px; left:119px;top: initial;}
+.BMap_Marker div{bottom:-14px;left:3.5px;}
+.BMapLabel {border:0px!important;width:0px;height:0px;background-color:Transparent!important}
+
+.layui-layer-border{ border: none !important; box-shadow: none !important; border-radius: 0px !important;}

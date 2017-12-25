@@ -404,3 +404,7 @@ body .larry-green .layui-layer-setwin .layui-layer-close1:hover{opacity:.7}
 .cart-right{float: right;}
 .cart-right .layui-btn{ height: 40px; line-height: 40px; border-radius: 0 !important;}
 .cart-right span{ height: 40px; line-height: 40px; padding: 0 10px; font-size:14px; vertical-align: middle; display: inline-block;}
+
+.mb_side_info_title_em{font-size:12px;}
+.viewdata-table-top{margin-bottom:10px;}
+.tips-label{display:inline-block; height: 38px; line-height: 38px;}

@@ -22,22 +22,22 @@ class Common extends Controller{
 		}
         define('MODULE_NAME',strtolower(request()->controller()));
         define('ACTION_NAME',strtolower(request()->action()));
-        $role = model('Role');
-        $checkLogin['admininfo']['role'] = $role->getFieldById($checkLogin['admininfo']['role_id'],'name');
-        $checkLogin['admininfo']['auth'] = $role->getFieldById($checkLogin['admininfo']['role_id'],'auth');
+        /*$role = model('Role');*/
+        /*$checkLogin['admininfo']['role'] = $role->getFieldById($checkLogin['admininfo']['role_id'],'name');
+        $checkLogin['admininfo']['auth'] = $role->getFieldById($checkLogin['admininfo']['role_id'],'auth');*/
 		$this->assign('admininfo',$checkLogin['admininfo']);
 		$this->admininfo = $checkLogin['admininfo'];
         //当前管理员权限
-        $this->adminAuth = explode(',',$checkLogin['admininfo']['auth']);
+        /*$this->adminAuth = explode(',',$checkLogin['admininfo']['auth']);*/
         //权限管理
         if(session('admin_id')>0){
             //当前操作权限ID
-            $this->HrefId = db('auth_rule')->where('href',MODULE_NAME.'/'.ACTION_NAME)->where('authopen',0)->where('type',0)->value('id');
-            if($this->HrefId){
-                if(!in_array($this->HrefId,$this->adminAuth)){
+            /*$this->HrefId = db('auth_rule')->where('href',MODULE_NAME.'/'.ACTION_NAME)->where('authopen',0)->where('type',0)->value('id');
+            if($this->HrefId){*/
+               /* if(!in_array($this->HrefId,$this->adminAuth)){
                     $this->error('您无此操作权限','index/body');
-                }
-            }
+                }*/
+            /*}*/
         }
     }
 }

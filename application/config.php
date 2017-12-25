@@ -17,7 +17,7 @@ return [
     // 应用命名空间
     'app_namespace'          => 'app',
     // 应用调试模式
-    'app_debug'              => false,
+    'app_debug'              => true,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -91,15 +91,15 @@ return [
     // 是否开启路由
     'url_route_on'           => true,
     // 路由使用完整匹配
-    'route_complete_match'   => false,
+    'route_complete_match'   => true,
     // 路由配置文件（支持配置多个）
     'route_config_file'      => ['route'],
     // 是否强制使用路由
     'url_route_must'         => false,
     // 域名部署
-    'url_domain_deploy'      => false,
+    'url_domain_deploy'      => true,
     // 域名根，如thinkphp.cn
-    'url_domain_root'        => '',
+    'url_domain_root'        => 'ribuluo.com',
     // 是否自动转换URL中的控制器和操作名
     'url_convert'            => true,
     // 默认的访问控制器层
@@ -238,4 +238,14 @@ return [
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    //子域名列表
+    'url_domain'    => [
+        'www'       => 'http://www.ribuluo.com',
+        'admin'     => 'http://admin.ribuluo.com',
+        'img'    => 'http://tp.ribuluo.com',
+    ],
+
+    //百度地图ak
+    'map_baidu_ak' => 'KwZhXg0g9C5zZpDIZX895Xfn',
 ];

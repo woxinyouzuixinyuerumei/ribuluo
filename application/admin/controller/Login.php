@@ -7,7 +7,6 @@ class Login extends Controller{
 	//登录页面
     public function index(){
 		//判断是否已经登陆
-		return view();exit;
 		$checkLogin = checkAdminLogin();
 		if(!$checkLogin['status']){
 			return view();
@@ -23,9 +22,9 @@ class Login extends Controller{
 		$password = input('post.password','','strip_tags');
         $code = input('post.code','','strip_tags');
 
-        if(!$this->check($code)){
+        /*if(!$this->check($code)){
             $this->error("验证码错误！",'',3);
-        }
+        }*/
 
 		if(empty($mobile)){
 			$this->error("手机号不能为空！",'',1);
